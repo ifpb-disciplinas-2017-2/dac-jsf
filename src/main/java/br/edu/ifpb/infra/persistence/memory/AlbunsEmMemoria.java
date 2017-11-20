@@ -1,7 +1,7 @@
 package br.edu.ifpb.infra;
 
-import br.edu.ifpb.album.Album;
-import br.edu.ifpb.album.Albuns;
+import br.edu.ifpb.domain.model.album.Album;
+import br.edu.ifpb.domain.model.album.Albuns;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

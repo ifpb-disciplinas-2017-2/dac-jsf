@@ -1,7 +1,7 @@
 package br.edu.ifpb.web;
 
-import br.edu.ifpb.album.ServiceAlbum;
-import br.edu.ifpb.album.Album;
+import br.edu.ifpb.domain.model.album.ServiceAlbum;
+import br.edu.ifpb.domain.model.album.Album;
 import java.util.List;
 import javax.enterprise.context.RequestScoped; //CDI
 //import javax.faces.bean.ManagedBean;

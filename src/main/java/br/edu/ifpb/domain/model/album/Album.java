@@ -1,4 +1,4 @@
-package br.edu.ifpb.album;
+package br.edu.ifpb.domain.model.album;
 
 import java.util.Objects;
 

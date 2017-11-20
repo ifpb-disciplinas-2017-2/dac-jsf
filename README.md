@@ -78,5 +78,5 @@ Após esses passos, teremos acesso ao terminal do container. Podemos acessar o _
 Alguns comando úteis no `psql`:  
 *`\dt`: lista as tabelas do _database_*    
 *`select * from album;`: seleciona todos os albuns*  
-*`INSERT INTO album(nome, cpf) VALUES ('Kiko','123.132.121-31');`: insere um novo album*    
+*`INSERT INTO album(nome, cpf) VALUES ('RC Always','12/10/1966');`: insere um novo album*    
 *`\q`: sair do _database_*  

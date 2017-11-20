@@ -1,9 +1,11 @@
 package br.edu.ifpb.web;
 
-import br.edu.ifpb.domain.Album;
-import java.util.Arrays;
+import br.edu.ifpb.album.ServiceAlbum;
+import br.edu.ifpb.album.Album;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.RequestScoped; //CDI
+//import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.RequestScoped; //JSF
 import javax.inject.Named;
 
 /**
@@ -13,28 +15,24 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
+//@ManagedBean
+//@RequestScoped
 public class ControladorDeAlbum {
 
-//    private String descricao;
     private Album album = new Album();
 
+    private ServiceAlbum service = new ServiceAlbum();
+
     public String salvar() {
-//        return null;
-        return "home.xhtml";
+        if (this.service.salvar(album)) {
+            return "listar.xhtml";
+        }
+        return null;
     }
-
-    public String nome() {
-        return "Kiko";
+    public String excluir(Album albumParaExcluir){
+        this.service.excluirAlbum(albumParaExcluir);
+        return null;
     }
-    
-
-//    public String getDescricao() {
-//        return descricao;
-//    }
-//
-//    public void setDescricao(String descricao) {
-//        this.descricao = descricao;
-//    }
 
     public Album getAlbum() {
         return album;
@@ -43,10 +41,9 @@ public class ControladorDeAlbum {
     public void setAlbum(Album album) {
         this.album = album;
     }
-    
-    public List<Album> albuns(){
-        return Arrays.asList(new Album("RC", "12/10/1967"),
-                new Album("Amado Batista", "12/10/1987"));
-                
+
+    public List<Album> albuns() {
+        return this.service.todosOsAlbuns();
+
     }
 }

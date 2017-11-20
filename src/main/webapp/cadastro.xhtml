@@ -6,10 +6,12 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        
+        <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
         <h:form>
-            Login: <h:inputText value="#{controladorDeLogin.usuario}" />
-            Senha: <h:inputText value="#{controladorDeLogin.senha}" />
-            <h:commandButton value="login" action="#{controladorDeLogin.logar()}" />
+            <h:inputText value="#{controladorDeAlbum.album.descricao}" />
+            <h:inputText value="#{controladorDeAlbum.album.dataDeLancamento}" />
+            <h:commandButton value="salvar" action="#{controladorDeAlbum.salvar()}" />
         </h:form>
     </h:body>
 </html>

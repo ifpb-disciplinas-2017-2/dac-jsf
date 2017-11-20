@@ -1,3 +1,11 @@
+# JSF
+
+Este projeto está estruturado com os assuntos relacionados ao JSF.
+
+**Aulas**
+
+*[Aula 1 - Conceitos Básicos ](https://github.com/ifpb-disciplinas-2017-2/dac-jsf/commit/a1a3dbf7c98399c82ee42dcfe6a00632a64d6f50)*
+
 ## Criar o arquivo `Dockerfile` do banco PostgreSQL
 ```
 FROM postgres
@@ -32,7 +40,7 @@ ADD target/dac-jsf.war  ${DEPLOY}
 *`.`: caminho relativo (ou absoluto) para o arquivo Dockerfile*  
 
 ## Executar o container  
-`docker run -p 5433:5432 -d --name banco ricardojob/banco` e 
+`docker run -p 5433:5432 -d --name banco ricardojob/banco` e
 `docker run -p 8081:8080 -d --name app --link banco:host-banco ricardojob/jsf`:   
 *`-p`: o bind entre a porta do host local com a porta do container*  
 *`-d`: o container seja executar em background*  
@@ -53,7 +61,7 @@ ADD target/dac-jsf.war  ${DEPLOY}
 `docker stop <container_id | container_name>`
 
 ## Executar comandos no container  
-Para executarmos comandos necessitamos de executar o comando `docker exec -it <container_id | container_name> <command>`. 
+Para executarmos comandos necessitamos de executar o comando `docker exec -it <container_id | container_name> <command>`.
 Por exemplo, para termos acesso ao container do banco que configuramos podemos fazer:
 
 `docker exec -it banco /bin/bash`:  
@@ -65,7 +73,7 @@ Após esses passos, teremos acesso ao terminal do container. Podemos acessar o _
 
 `psql -U postgres dac-album`:  
 *`-U`: usuário configurado*  
-*`dac-album`: o _database_ que desejamos acessar* 
+*`dac-album`: o _database_ que desejamos acessar*
 
 Alguns comando úteis no `psql`:  
 *`\dt`: lista as tabelas do _database_*    

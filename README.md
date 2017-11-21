@@ -5,6 +5,7 @@ Este projeto está estruturado com os assuntos relacionados ao JSF.
 **Aulas**
 
 *[Aula 1 - Conceitos Básicos ](https://github.com/ifpb-disciplinas-2017-2/dac-jsf/commit/a1a3dbf7c98399c82ee42dcfe6a00632a64d6f50)*
+*[Aula 2 - HTML 5 e conversores ](https://github.com/ifpb-disciplinas-2017-2/dac-jsf/commit/20232ed4246313acf48df330554f1ec6709dedb1)*
 
 ## Criar o arquivo `Dockerfile` do banco PostgreSQL
 ```

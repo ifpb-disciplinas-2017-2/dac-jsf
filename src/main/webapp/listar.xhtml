@@ -14,9 +14,9 @@
                     <f:facet name="header">Descrição</f:facet>
                         #{album.descricao}
                 </h:column>
-                <h:column>
+                <h:column >
                     <f:facet name="header">Data de Lançamento</f:facet>
-                    #{album.dataDeLancamento}
+                    <h:outputText converter="convert.LocalDate" value="#{album.dataDeLancamento}" />
                 </h:column>
                 <h:column>
                     <f:facet name="header">Ação</f:facet>

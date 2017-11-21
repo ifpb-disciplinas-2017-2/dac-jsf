@@ -1,5 +1,6 @@
 package br.edu.ifpb.domain.model.album;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -10,16 +11,18 @@ import java.util.Objects;
 public class Album {
 
     private String descricao;
-    private String dataDeLancamento;
+//    private String dataDeLancamento;
+    private LocalDate dataDeLancamento;
 
     public Album() {
     }
 
-    public Album(String descricao, String dataDeLancamento) {
-        this.descricao = descricao;
-        this.dataDeLancamento = dataDeLancamento;
-    }
+//    public Album(String descricao, String dataDeLancamento) {
+//        this.descricao = descricao;
+//        this.dataDeLancamento = dataDeLancamento;
+//    }
 
+    
     public String getDescricao() {
         return descricao;
     }
@@ -28,14 +31,23 @@ public class Album {
         this.descricao = descricao;
     }
 
-    public String getDataDeLancamento() {
+//    public String getDataDeLancamento() {
+//        return dataDeLancamento;
+//    }
+//
+//    public void setDataDeLancamento(String dataDeLancamento) {
+//        this.dataDeLancamento = dataDeLancamento;
+//    }
+
+    public LocalDate getDataDeLancamento() {
         return dataDeLancamento;
     }
 
-    public void setDataDeLancamento(String dataDeLancamento) {
+    public void setDataDeLancamento(LocalDate dataDeLancamento) {
         this.dataDeLancamento = dataDeLancamento;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 5;

@@ -11,9 +11,11 @@
         
         <h:form>
             <h:outputLabel for="descricao" value="Descrição: "/>
-            <h:inputText id="descricao" value="#{controladorDeAlbum.album.descricao}" />
-            <h:inputText value="#{controladorDeAlbum.album.dataDeLancamento}" />
+            <h:inputText  id="descricao" value="#{controladorDeAlbum.album.descricao}" />
+            <h:inputText value="#{controladorDeAlbum.album.dataDeLancamento}" 
+                         converter="convert.LocalDate" />
             <h:commandButton value="salvar" action="#{controladorDeAlbum.salvar()}" />
+            <h:commandButton value="salvar" action="#{cMusicas}" />
         </h:form>
     </h:body>
 </html>

@@ -1,6 +1,7 @@
 package br.edu.ifpb.domain.model.album;
 
 import br.edu.ifpb.infra.AlbunsEmMemoria;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -21,9 +22,13 @@ public class ServiceAlbum {
         return dao.salvar(album);
     }
 
+//    private static boolean naoEhAlbumValido(Album album) {
+//        return album.getDataDeLancamento()==null || 
+//                "".equalsIgnoreCase(album.getDataDeLancamento().trim());
+//    }
     private static boolean naoEhAlbumValido(Album album) {
         return album.getDataDeLancamento()==null || 
-                "".equalsIgnoreCase(album.getDataDeLancamento().trim());
+               LocalDate.now().isBefore(album.getDataDeLancamento());
     }
     
     public List<Album> todosOsAlbuns(){

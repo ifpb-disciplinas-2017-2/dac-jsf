@@ -8,6 +8,8 @@ Este projeto está estruturado com os assuntos relacionados ao JSF.
 
 *[Aula 2 - HTML 5 e conversores ](https://github.com/ifpb-disciplinas-2017-2/dac-jsf/commit/20232ed4246313acf48df330554f1ec6709dedb1)*
 
+*[Aula 3 - Validadores e template ](https://github.com/ifpb-disciplinas-2017-2/dac-jsf/commit/296b3a5eba2a9d847596d402767467a3024bd168)*
+
 ## Criar o arquivo `Dockerfile` do banco PostgreSQL
 ```
 FROM postgres

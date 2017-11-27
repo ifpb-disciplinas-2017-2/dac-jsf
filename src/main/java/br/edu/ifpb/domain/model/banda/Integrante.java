@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Integrante {
 
     private String nome;
-    private CPF cpf = new CPF("12345678909");
+    private CPF cpf = new CPF("");
 
     public Integrante() {
     }

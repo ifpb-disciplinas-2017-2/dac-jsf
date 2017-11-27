@@ -1,6 +1,5 @@
 package br.edu.ifpb.domain.model.album;
 
-import br.edu.ifpb.domain.model.banda.Integrante;
 import java.util.List;
 
 /**
@@ -18,8 +17,6 @@ public interface Albuns {
 
     Album localizarPor(String descricao);
 
-    public List<Integrante> listarOsIntegrantes();
-
-    public Integrante localizarIntegrantePor(String nome);
+//    public List<Banda> listarAsBandas();
 
 }

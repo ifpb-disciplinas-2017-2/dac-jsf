@@ -14,14 +14,14 @@
                 <h:inputText value="#{controladorDeAlbum.album.dataDeLancamento}" 
                              converter="convert.LocalDate" />
 
-                <h:selectOneMenu id="integrantes" 
-                                 value="#{controladorDeAlbum.album.integrante}" 
-                                 converter="convert.Integrante">
-                    
-                    <f:selectItems value="#{controladorDeAlbum.integrantes()}"
-                                   var="integrante"
-                                   itemLabel="#{integrante.nome}"
-                                   itemValue="#{integrante}" />
+                <h:selectOneMenu id="bandas" 
+                                 value="#{controladorDeAlbum.album.banda}" 
+                                 converter="convert.Banda">
+
+                    <f:selectItems value="#{controladorDeAlbum.bandas()}"
+                                   var="banda"
+                                   itemLabel="#{banda.nomeFantasia}"
+                                   itemValue="#{banda}" />
                 </h:selectOneMenu>
 
                 <h:commandButton value="salvar" action="#{controladorDeAlbum.salvar()}" />

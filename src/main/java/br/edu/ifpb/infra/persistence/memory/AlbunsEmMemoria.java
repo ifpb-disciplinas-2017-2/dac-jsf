@@ -2,6 +2,7 @@ package br.edu.ifpb.infra.persistence.memory;
 
 import br.edu.ifpb.domain.model.album.Album;
 import br.edu.ifpb.domain.model.album.Albuns;
+import br.edu.ifpb.domain.model.banda.Banda;
 import br.edu.ifpb.domain.model.banda.Integrante;
 import java.util.Arrays;
 import java.util.Collections;
@@ -43,16 +44,21 @@ public class AlbunsEmMemoria implements Albuns {
                 .get();
     }
 
-    @Override
-    public Integrante localizarIntegrantePor(String nome) {
-        return integrantes.stream()
-                .filter(a -> a.getNome().equalsIgnoreCase(nome))
-                .findFirst()
-                .get();
-    }
-
-    @Override
-    public List<Integrante> listarOsIntegrantes() {
-        return integrantes;
-    }
+//    @Override
+//    public Integrante localizarIntegrantePor(String nome) {
+//        return integrantes.stream()
+//                .filter(a -> a.getNome().equalsIgnoreCase(nome))
+//                .findFirst()
+//                .get();
+//    }
+//
+//    @Override
+//    public List<Integrante> listarOsIntegrantes() {
+//        return integrantes;
+//    }
+//
+//    @Override
+//    public List<Banda> listarAsBandas() {
+//        
+//    }
 }

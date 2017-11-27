@@ -9,28 +9,23 @@
         <ui:define name="centro">
             <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
             <h:form>
-                <h:dataTable value="#{controladorDeAlbum.albuns()}" var="album">
+                <h:dataTable value="#{controladorDeBanda.bandas()}" var="album" border="3">
                     <h:column>
                         <f:facet name="header">Descrição</f:facet>
-                            #{album.descricao}
+                            #{album.nomeFantasia}
                     </h:column>
                     <h:column >
-                        <f:facet name="header">Data de Lançamento</f:facet>
-                        <h:outputText converter="convert.LocalDate" value="#{album.dataDeLancamento}" />
-                    </h:column>
-                    <h:column >
-                        <f:facet name="header">Integrante</f:facet>
-                        <h:outputText converter="converter.CpfConverter" value="#{album.integrante.cpf}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Ação</f:facet>
-                        <h:commandButton value="excluir" action="#{controladorDeAlbum.excluir(album)}"/>
+                        <f:facet name="header"># integrantes</f:facet>
+                        <h:outputText  value="#{album.integrantes.size()}" />
                     </h:column>
                 </h:dataTable>
             </h:form>
         </ui:define>
         <ui:define name="rodape">
-            <p>Listagem de Albuns </p>
+            <p>Listagem de bandas </p>
         </ui:define>
     </ui:composition>
 </html>
+
+
+

@@ -9,21 +9,24 @@
         <ui:define name="centro">
             <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
             <h:form>
-                <h:outputLabel for="descricao" value="Descrição: "/>
-                <h:inputText  id="descricao" value="#{controladorDeAlbum.album.descricao}" />
-                <h:inputText value="#{controladorDeAlbum.album.dataDeLancamento}" 
-                             converter="convert.LocalDate" />
+                <h:panelGrid class="estilo" columns="2">
+                    <h:outputLabel for="descricao" value="Descrição: "/>
+                    <h:inputText  id="descricao" value="#{controladorDeAlbum.album.descricao}" />
+                    <h:outputLabel for="lancamento" value="Data de lançamento: "/>
+                    <h:inputText id="lancamento"
+                                 value="#{controladorDeAlbum.album.dataDeLancamento}" 
+                                 converter="convert.LocalDate" />
+                    <h:outputLabel for="bandas" value="Selecione a banda "/>
+                    <h:selectOneMenu id="bandas" 
+                                     value="#{controladorDeAlbum.album.banda}" 
+                                     converter="convert.Banda">
 
-                <h:selectOneMenu id="bandas" 
-                                 value="#{controladorDeAlbum.album.banda}" 
-                                 converter="convert.Banda">
-
-                    <f:selectItems value="#{controladorDeAlbum.bandas()}"
-                                   var="banda"
-                                   itemLabel="#{banda.nomeFantasia}"
-                                   itemValue="#{banda}" />
-                </h:selectOneMenu>
-
+                        <f:selectItems value="#{controladorDeAlbum.bandas()}"
+                                       var="banda"
+                                       itemLabel="#{banda.nomeFantasia}"
+                                       itemValue="#{banda}" />
+                    </h:selectOneMenu>
+                </h:panelGrid>
                 <h:commandButton value="salvar" action="#{controladorDeAlbum.salvar()}" />
             </h:form>
         </ui:define>

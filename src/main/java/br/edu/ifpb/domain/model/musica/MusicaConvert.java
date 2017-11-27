@@ -1,6 +1,5 @@
-package br.edu.ifpb.web.jsf.convert;
+package br.edu.ifpb.domain.model.musica;
 
-import br.edu.ifpb.domain.model.album.Album;
 import br.edu.ifpb.domain.model.banda.Banda;
 import br.edu.ifpb.domain.model.banda.Bandas;
 import br.edu.ifpb.infra.persistence.memory.BandasEmMemoria;
@@ -14,10 +13,10 @@ import javax.faces.convert.FacesConverter;
  * @mail ricardo.job@ifpb.edu.br
  * @since 26/11/2017, 18:53:05
  */
-@FacesConverter(value = "convert.Banda", forClass = Banda.class)
-public class BandaConvert implements Converter {
+@FacesConverter(value = "convert.Musica")
+public class MusicaConvert implements Converter {
 
-    private final Bandas albuns = new BandasEmMemoria();
+    private final ServiceMusica albuns = new ServiceMusica();
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component,
@@ -25,7 +24,8 @@ public class BandaConvert implements Converter {
         if (value == null) {
             return null;
         }
-        return albuns.localizarPor(value);
+        int id = Integer.parseInt(value);
+        return albuns.localizarPor(id);
     }
 
     @Override
@@ -34,9 +34,8 @@ public class BandaConvert implements Converter {
         if (value == null) {
             return null;
         }
-        Banda album = (Banda) value;
-        
-        return album.getNomeFantasia();
+        Musica album = (Musica) value;
+        return String.valueOf(album.getId());
     }
 
 }

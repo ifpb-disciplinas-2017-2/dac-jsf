@@ -7,24 +7,17 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="centro">
-            <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
             <h:form>
-                <h:outputLabel for="descricao" value="Descrição: "/>
-                <h:inputText  id="descricao" value="#{controladorDeAlbum.album.descricao}" />
-                <h:inputText value="#{controladorDeAlbum.album.dataDeLancamento}" 
-                             converter="convert.LocalDate" />
+                <h:selectOneMenu id="musicas" 
+                                 value="#{controladorDeMusica.musica}" 
+                                 converter="convert.Musica">
 
-                <h:selectOneMenu id="bandas" 
-                                 value="#{controladorDeAlbum.album.banda}" 
-                                 converter="convert.Banda">
-
-                    <f:selectItems value="#{controladorDeAlbum.bandas()}"
-                                   var="banda"
-                                   itemLabel="#{banda.nomeFantasia}"
-                                   itemValue="#{banda}" />
+                    <f:selectItems value="#{controladorDeMusica.musicas()}"
+                                   var="musica"
+                                   itemLabel="#{musica.id} - #{musica.nome}"
+                                   itemValue="#{musica}" />
                 </h:selectOneMenu>
-
-                <h:commandButton value="salvar" action="#{controladorDeAlbum.salvar()}" />
+                <h:commandButton value="salvar" action="#{controladorDeMusica.add()}" />
             </h:form>
         </ui:define>
     </ui:composition>

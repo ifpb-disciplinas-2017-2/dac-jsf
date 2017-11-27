@@ -1,6 +1,7 @@
 package br.edu.ifpb.domain.model.album;
 
-import br.edu.ifpb.infra.AlbunsEmMemoria;
+import br.edu.ifpb.domain.model.banda.Integrante;
+import br.edu.ifpb.infra.persistence.memory.AlbunsEmMemoria;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -37,5 +38,9 @@ public class ServiceAlbum {
 
     public void excluirAlbum(Album albumParaExcluir) {
         dao.excluir(albumParaExcluir);
+    }
+
+    public List<Integrante> todosOsIntegrantes() {
+        return this.dao.listarOsIntegrantes();
     }
 }

@@ -1,4 +1,4 @@
-package br.edu.ifpb.infra.jsf.convert;
+package br.edu.ifpb.web.jsf.convert;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

@@ -2,6 +2,7 @@ package br.edu.ifpb.infra;
 
 import br.edu.ifpb.domain.model.album.Album;
 import br.edu.ifpb.domain.model.album.Albuns;
+import br.edu.ifpb.domain.model.banda.Integrante;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -28,5 +29,20 @@ public class AlbunsEmJDBC implements Albuns {
     @Override
     public void excluir(Album albumParaExcluir) {
         this.albuns.remove(albumParaExcluir);
+    }
+
+    @Override
+    public Album localizarPor(String descricao) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Integrante> listarOsIntegrantes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Integrante localizarIntegrantePor(String nome) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

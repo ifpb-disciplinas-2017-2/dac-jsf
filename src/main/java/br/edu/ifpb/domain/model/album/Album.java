@@ -1,5 +1,6 @@
 package br.edu.ifpb.domain.model.album;
 
+import br.edu.ifpb.domain.model.banda.Integrante;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -13,6 +14,7 @@ public class Album {
     private String descricao;
 //    private String dataDeLancamento;
     private LocalDate dataDeLancamento;
+    private Integrante integrante = new Integrante();
 
     public Album() {
     }
@@ -21,8 +23,6 @@ public class Album {
 //        this.descricao = descricao;
 //        this.dataDeLancamento = dataDeLancamento;
 //    }
-
-    
     public String getDescricao() {
         return descricao;
     }
@@ -38,7 +38,6 @@ public class Album {
 //    public void setDataDeLancamento(String dataDeLancamento) {
 //        this.dataDeLancamento = dataDeLancamento;
 //    }
-
     public LocalDate getDataDeLancamento() {
         return dataDeLancamento;
     }
@@ -47,12 +46,20 @@ public class Album {
         this.dataDeLancamento = dataDeLancamento;
     }
 
-    
+    public Integrante getIntegrante() {
+        return integrante;
+    }
+
+    public void setIntegrante(Integrante integrante) {
+        this.integrante = integrante;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 23 * hash + Objects.hashCode(this.descricao);
-        hash = 23 * hash + Objects.hashCode(this.dataDeLancamento);
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.descricao);
+        hash = 53 * hash + Objects.hashCode(this.dataDeLancamento);
+        hash = 53 * hash + Objects.hashCode(this.integrante);
         return hash;
     }
 
@@ -74,7 +81,13 @@ public class Album {
         if (!Objects.equals(this.dataDeLancamento, other.dataDeLancamento)) {
             return false;
         }
+        if (!Objects.equals(this.integrante, other.integrante)) {
+            return false;
+        }
         return true;
     }
+
+    
+    
 
 }

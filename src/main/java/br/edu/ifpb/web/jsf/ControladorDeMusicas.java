@@ -1,4 +1,4 @@
-package br.edu.ifpb.web;
+package br.edu.ifpb.web.jsf;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;

@@ -1,7 +1,9 @@
-package br.edu.ifpb.web;
+package br.edu.ifpb.web.jsf;
 
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -15,11 +17,14 @@ public class ControladorDeLogin implements Serializable {
 
     private String usuario;
     private String senha;
-    
-    public String logar(){
-        
-        if(usuarioValido()){
+
+    public String logar() {
+
+        if (usuarioValido()) {
             return "cadastro.xhtml";
+        } else {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage("senha", new FacesMessage("usuario/senha não confere"));
         }
         return null;
     }

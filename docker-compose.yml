@@ -1,0 +1,16 @@
+version: "2"
+services:
+  postgres:
+    build: ./database
+    image: team.two/database
+    container_name: database
+    ports:
+      - "5433:5432"
+  webapp:
+    build: .
+    image: team.two/app
+    container_name: app
+    ports: 
+      - "8080:8080" 
+    links: 
+      - "postgres:host-banco"

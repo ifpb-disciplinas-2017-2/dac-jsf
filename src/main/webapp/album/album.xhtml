@@ -6,10 +6,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
+        <ui:define name="titulo">
+            <h5>Cadastro de álbum</h5>
+        </ui:define>
         <ui:define name="centro">
-            <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
             <h:form>
-                <h:panelGrid class="estilo" columns="2">
+                <div class="row">
+                    <div class="col l8 offset-l2">
                     <h:outputLabel for="descricao" value="Descrição: "/>
                     <h:inputText  id="descricao" value="#{controladorDeAlbum.album.descricao}" />
                     <h:outputLabel for="lancamento" value="Data de lançamento: "/>
@@ -19,16 +22,23 @@
                     <h:outputLabel for="bandas" value="Selecione a banda "/>
                     <h:selectOneMenu id="bandas" 
                                      value="#{controladorDeAlbum.album.banda}" 
-                                     converter="convert.Banda">
+                                     converter="convert.Banda"
+                                     class="browser-default">
 
                         <f:selectItems value="#{controladorDeAlbum.bandas()}"
                                        var="banda"
                                        itemLabel="#{banda.nomeFantasia}"
                                        itemValue="#{banda}" />
                     </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandButton value="salvar" action="#{controladorDeAlbum.salvar()}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <h:commandButton class="btn col l8 offset-l2 blue" value="salvar" action="#{controladorDeAlbum.salvar()}" />
+                </div>
             </h:form>
+        </ui:define>
+        <ui:define name="rodape">
+            <p>Cadastro de álbuns</p>
         </ui:define>
     </ui:composition>
 </html>

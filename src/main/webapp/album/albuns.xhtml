@@ -6,8 +6,10 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="centro">
-            <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
+        <ui:define name="titulo">
+            <h5>Álbuns cadastrados</h5>
+        </ui:define>
+        <ui:define name="centro">            
             <h:form>
                 <h:dataTable value="#{controladorDeAlbum.albuns()}" var="album">
                     <h:column>
@@ -26,7 +28,7 @@
             </h:form>
         </ui:define>
         <ui:define name="rodape">
-            <p>Listagem de Albuns </p>
+            <p>Listagem de álbuns</p>
         </ui:define>
     </ui:composition>
 </html>

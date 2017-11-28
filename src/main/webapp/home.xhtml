@@ -3,20 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
+    
     <ui:composition template="/template.xhtml">
-        <ui:define name="esquerda">
-            <h:form>
-                <p><h:commandLink value="Cadastrar Banda" action="banda/banda.xhtml" /></p>
-                <p><h:commandLink value="Listar Bandas" action="banda/bandas.xhtml" /></p>
-                <p><h:commandLink value="Cadastrar Album" action="album/album.xhtml" /></p>
-                <p><h:commandLink value="Listar Albuns" action="album/albuns.xhtml" /></p>
-                <p><h:commandLink value="Exemplo com HTML 5" action="exemplo.xhtml" /></p>
-                <p><h:commandLink value="musica" action="musica.xhtml" /></p>
-            </h:form>
+        <ui:define name="titulo">
+            <h5>Página Inicial</h5>
         </ui:define>
         <ui:define name="centro">
-            <h1> <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" /> </h1
+            <h5><h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" /></h5>
         </ui:define>
     </ui:composition>
 </html>

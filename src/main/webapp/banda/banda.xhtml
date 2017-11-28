@@ -4,39 +4,61 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
     <ui:composition template="/template.xhtml">
+        <ui:define name="titulo">
+            <h5>Cadastro de banda</h5>
+        </ui:define>
         <ui:define name="centro">
-            <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
             <h:form>
-                <h:outputLabel for="descricao" value="Descrição: "/>
-                <h:inputText  id="descricao" value="#{controladorDeBanda.banda.nomeFantasia}" />
-
-                <h:selectOneMenu id="integrantes" 
+                <div class="row">
+                    <div class="col l6">
+                        <h:outputLabel for="nome" value="Nome"/>
+                        <h:inputText  id="nome" value="#{controladorDeBanda.banda.nomeFantasia}"/>
+                        <br/>
+                        <h:outputLabel for="integrantes" value="Integrantes"/>
+                        <div class="row">
+                            <div class="col l9">
+                                <h:selectOneMenu id="integrantes" 
                                  value="#{controladorDeBanda.integrante}" 
-                                 converter="convert.Integrante">
-
-                    <f:selectItems value="#{controladorDeBanda.integrantes()}"
-                                   var="integrante"
-                                   itemLabel="#{integrante.nome}"
-                                   itemValue="#{integrante}" />
-                </h:selectOneMenu>
-                <h:commandButton value="adicionar" action="#{controladorDeBanda.add()}" />
-                
-                <h:dataTable value="#{controladorDeBanda.integrantesDaBanda()}" var="integrante">
-                    <h:column>
-                        <f:facet name="header">Nome</f:facet>
-                            #{integrante.nome}
-                    </h:column> 
-                    <h:column >
-                        <f:facet name="header">CPF</f:facet>
-                        <h:outputText converter="converter.CpfConverter" value="#{integrante.cpf}" />
-                    </h:column>
-                </h:dataTable>
-                
-                <h:commandButton value="salvar" action="#{controladorDeBanda.salvar()}" />
-           
+                                 converter="convert.Integrante"
+                                 class="browser-default">
+                            
+                                    <f:selectItems value="#{controladorDeBanda.integrantes()}"
+                                                   var="integrante"
+                                                   itemLabel="#{integrante.nome}"
+                                                   itemValue="#{integrante}" />
+                            
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="col l3">
+                                <h:commandLink action="#{controladorDeBanda.add()}"
+                                       class="btn-floating btn-flat waves-effect waves-light red">
+                                    <i class="material-icons">add</i>
+                                </h:commandLink>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l6">
+                        <h:dataTable value="#{controladorDeBanda.integrantesDaBanda()}" var="integrante">
+                            <h:column>
+                                <f:facet name="header">Nome</f:facet>
+                                    #{integrante.nome}
+                            </h:column> 
+                            <h:column >
+                                <f:facet name="header">CPF</f:facet>
+                                <h:outputText converter="converter.CpfConverter" value="#{integrante.cpf}" />
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </div>
+                <div class="row">
+                    <h:commandButton class="btn col l12 blue" value="salvar" action="#{controladorDeBanda.salvar()}" />
+                </div>
             </h:form>
+                
+        </ui:define>
+        <ui:define name="rodape">
+            <p>Cadastro de bandas</p>
         </ui:define>
     </ui:composition>
 </html>

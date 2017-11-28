@@ -4,25 +4,27 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+    
     <ui:composition template="/template.xhtml">
-        <ui:define name="centro">
-            <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
+        <ui:define  name="titulo">
+            <h5>Bandas cadastradas</h5>
+        </ui:define>
+        <ui:define name="centro">            
             <h:form>
                 <h:dataTable value="#{controladorDeBanda.bandas()}" var="album" border="3">
                     <h:column>
-                        <f:facet name="header">Descrição</f:facet>
+                        <f:facet name="header">Nome</f:facet>
                             #{album.nomeFantasia}
                     </h:column>
                     <h:column >
-                        <f:facet name="header"># integrantes</f:facet>
+                        <f:facet name="header">integrantes</f:facet>
                         <h:outputText  value="#{album.integrantes.size()}" />
                     </h:column>
                 </h:dataTable>
             </h:form>
         </ui:define>
         <ui:define name="rodape">
-            <p>Listagem de bandas </p>
+            <p>Listagem de bandas</p>
         </ui:define>
     </ui:composition>
 </html>

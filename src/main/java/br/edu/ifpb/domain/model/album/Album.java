@@ -13,8 +13,16 @@ public class Album {
 
     private String descricao;
     private LocalDate dataDeLancamento;
+    private int id;
 
     private Banda banda = new Banda();
+
+    public Album(int id,String descricao, LocalDate dataDeLancamento) {
+        this.id = id;
+        this.descricao = descricao;
+        this.dataDeLancamento = dataDeLancamento;
+    }
+    
 
     public Album() {
     }
@@ -42,6 +50,15 @@ public class Album {
     public void setBanda(Banda banda) {
         this.banda = banda;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     @Override
     public int hashCode() {

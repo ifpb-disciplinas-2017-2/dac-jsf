@@ -9,8 +9,16 @@ import java.util.Objects;
  */
 public class Integrante {
 
+    private int id;
     private String nome;
-    private CPF cpf = new CPF("");
+    private CPF cpf ;
+
+    public Integrante(int id, String nome, CPF cpf) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+    
 
     public Integrante() {
     }
@@ -35,11 +43,20 @@ public class Integrante {
         this.cpf = cpf;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.nome);
-        hash = 53 * hash + Objects.hashCode(this.cpf);
+        int hash = 5;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.cpf);
         return hash;
     }
 
@@ -55,6 +72,9 @@ public class Integrante {
             return false;
         }
         final Integrante other = (Integrante) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -63,5 +83,7 @@ public class Integrante {
         }
         return true;
     }
+
     
+
 }

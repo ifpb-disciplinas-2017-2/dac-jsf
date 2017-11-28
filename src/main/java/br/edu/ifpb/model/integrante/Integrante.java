@@ -1,24 +1,30 @@
-package br.edu.ifpb.domain.model.banda;
+
+package br.edu.ifpb.model.integrante;
 
 import java.util.Objects;
 
-/**
- * @author Ricardo Job
- * @mail ricardo.job@ifpb.edu.br
- * @since 21/11/2017, 09:11:47
- */
 public class Integrante {
     
     private int id;
     private String nome;
-    private CPF cpf = new CPF("");
-    private int banda;
-
-    public Integrante() {
+    private CPF cpf;
+    
+    public Integrante(){
+        
     }
 
-    public Integrante(String nome) {
+    public Integrante(int id, String nome, CPF cpf) {
+        this.id = id;
         this.nome = nome;
+        this.cpf = cpf;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -37,27 +43,12 @@ public class Integrante {
         this.cpf = cpf;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getBanda() {
-        return banda;
-    }
-
-    public void setBanda(int banda) {
-        this.banda = banda;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.nome);
-        hash = 53 * hash + Objects.hashCode(this.cpf);
+        int hash = 3;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.cpf);
         return hash;
     }
 
@@ -73,6 +64,9 @@ public class Integrante {
             return false;
         }
         final Integrante other = (Integrante) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -81,5 +75,5 @@ public class Integrante {
         }
         return true;
     }
-    
+       
 }

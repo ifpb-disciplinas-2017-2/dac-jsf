@@ -2,7 +2,6 @@ package br.edu.ifpb.domain.model.musica;
 
 import br.edu.ifpb.domain.model.banda.Banda;
 import br.edu.ifpb.domain.model.banda.Bandas;
-import br.edu.ifpb.infra.persistence.memory.BandasEmMemoria;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;

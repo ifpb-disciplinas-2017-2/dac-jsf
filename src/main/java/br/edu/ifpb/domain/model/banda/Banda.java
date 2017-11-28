@@ -10,7 +10,8 @@ import java.util.Objects;
  * @since 27/11/2017, 13:39:19
  */
 public class Banda {
-
+    
+    private int id;
     private String nomeFantasia;
     private List<Integrante> integrantes = new ArrayList<>();
 
@@ -37,6 +38,14 @@ public class Banda {
 
     public void setIntegrantes(List<Integrante> integrantes) {
         this.integrantes = integrantes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

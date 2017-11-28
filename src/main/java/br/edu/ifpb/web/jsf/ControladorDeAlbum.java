@@ -45,7 +45,7 @@ public class ControladorDeAlbum {
     }
 
     public List<Banda> bandas() {
-        return this.service.todosAsBandas();
+        return this.service.todasAsBandas();
 
     }
 }

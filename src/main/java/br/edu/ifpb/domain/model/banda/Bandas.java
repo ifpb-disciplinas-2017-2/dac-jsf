@@ -11,14 +11,14 @@ public interface Bandas {
 
     void excluir(Banda bandaParaExcluir);
 
-    List<Banda> listarTodos();
+    List<Banda> listarTodas();
 
     boolean salvar(Banda album);
 
-    Banda localizarPor(String descricao);
+    Banda localizarPor(int id);
 
     public List<Integrante> listarOsIntegrantes();
 
-    public Integrante localizarIntegrantePor(String nome);
+    public Integrante localizarIntegrantePor(int id);
 
 }

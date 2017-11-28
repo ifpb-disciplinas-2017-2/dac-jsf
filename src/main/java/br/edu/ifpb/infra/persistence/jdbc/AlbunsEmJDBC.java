@@ -35,13 +35,14 @@ public class AlbunsEmJDBC implements Albuns {
     @Override
     public boolean salvar(Album album) {
         boolean re = false;
-        String sql = "INSERT INTO Album (descricao,dataDeLancamento) VALUES(?,?)";
+        String sql = "INSERT INTO Album (descricao,dataDeLancamento,id_banda) VALUES(?,?,?)";
             PreparedStatement statement = null;
         try {
             statement = conexao.init().prepareStatement(sql);
         
             statement.setString(1, album.getDescricao());
              statement.setDate(2, Date.valueOf(album.getDataDeLancamento()));
+               statement.setInt(3, Date.valueOf(album.getBanda().ge));
              re = statement.execute();
     }   catch (SQLException ex) {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);

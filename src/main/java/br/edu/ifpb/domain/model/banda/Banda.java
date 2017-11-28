@@ -10,7 +10,7 @@ import java.util.Objects;
  * @since 27/11/2017, 13:39:19
  */
 public class Banda {
-
+private int id;
     private String nomeFantasia;
     private List<Integrante> integrantes = new ArrayList<>();
 
@@ -39,11 +39,20 @@ public class Banda {
         this.integrantes = integrantes;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.nomeFantasia);
-        hash = 43 * hash + Objects.hashCode(this.integrantes);
+        hash = 59 * hash + this.id;
+        hash = 59 * hash + Objects.hashCode(this.nomeFantasia);
+        hash = 59 * hash + Objects.hashCode(this.integrantes);
         return hash;
     }
 
@@ -59,6 +68,9 @@ public class Banda {
             return false;
         }
         final Banda other = (Banda) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (!Objects.equals(this.nomeFantasia, other.nomeFantasia)) {
             return false;
         }
@@ -67,6 +79,9 @@ public class Banda {
         }
         return true;
     }
+    
+
+   
 
     @Override
     public String toString() {

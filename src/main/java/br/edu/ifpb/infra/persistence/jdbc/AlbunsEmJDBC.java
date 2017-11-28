@@ -1,18 +1,12 @@
-package br.edu.ifpb.infra;
+package br.edu.ifpb.infra.persistence.jdbc;
 
 import br.edu.ifpb.domain.model.album.Album;
 import br.edu.ifpb.domain.model.album.Albuns;
-import br.edu.ifpb.domain.model.banda.Integrante;
-import br.edu.ifpb.infra.persistence.jdbc.Conexao;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,29 +16,27 @@ import java.util.logging.Logger;
  * @since 20/11/2017, 10:27:39
  */
 public class AlbunsEmJDBC implements Albuns {
-     
+
     private Conexao conexao;
 
     public AlbunsEmJDBC() {
         conexao = new Conexao();
     }
-    
 
- //   private static final List<Album> albuns = new CopyOnWriteArrayList<>();
-
+    //   private static final List<Album> albuns = new CopyOnWriteArrayList<>();
     @Override
     public boolean salvar(Album album) {
         boolean re = false;
         String sql = "INSERT INTO Album (descricao,dataDeLancamento,id_banda) VALUES(?,?,?)";
-            PreparedStatement statement = null;
+        PreparedStatement statement = null;
         try {
             statement = conexao.init().prepareStatement(sql);
-        
+
             statement.setString(1, album.getDescricao());
-             statement.setDate(2, Date.valueOf(album.getDataDeLancamento()));
-               statement.setInt(3, Date.valueOf(album.getBanda().ge));
-             re = statement.execute();
-    }   catch (SQLException ex) {
+            statement.setDate(2, Date.valueOf(album.getDataDeLancamento()));
+            statement.setInt(3, album.getBanda().getId());
+            re = statement.execute();
+        } catch (SQLException ex) {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
         return re;
@@ -62,12 +54,12 @@ public class AlbunsEmJDBC implements Albuns {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Collections.emptyList();
-        
+
     }
 
     @Override
     public void excluir(Album albumParaExcluir) {
-        
+
     }
 
     @Override

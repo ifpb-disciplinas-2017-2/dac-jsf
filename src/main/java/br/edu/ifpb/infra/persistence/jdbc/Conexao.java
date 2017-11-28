@@ -16,22 +16,19 @@ import java.util.logging.Logger;
  * @author jose
  */
 public class Conexao {
-      private Connection connection;
 
-   
+    private Connection connection;
 
-    
     public Connection init() {
         try {
             Class.forName("org.postgresql.Driver");
-          return  connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dac-jsf", "postgres", "12345");
+            return connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dac-jsf", "postgres", "12345");
         } catch (SQLException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
-          return null;
+        return null;
     }
 
-   
 }

@@ -1,12 +1,8 @@
-package br.edu.ifpb.infra;
+package br.edu.ifpb.infra.persistence.jdbc;
 
 import br.edu.ifpb.domain.model.album.Album;
 import br.edu.ifpb.domain.model.album.Albuns;
-import br.edu.ifpb.domain.model.banda.Integrante;
-import br.edu.ifpb.infra.persistence.jdbc.Conexao;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +10,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

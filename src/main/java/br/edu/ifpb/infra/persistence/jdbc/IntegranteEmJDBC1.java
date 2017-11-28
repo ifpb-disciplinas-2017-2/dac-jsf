@@ -75,9 +75,9 @@ public class IntegranteEmJDBC1 implements IFIntegrante {
     }
 
     @Override
-    public Integrante localizarPor(String descricao) {
-        StringBuffer consulta = new StringBuffer("SELECT * FROM Album where id ");
-        consulta.append(descricao);
+    public Integrante localizarPor(String nome) {
+        StringBuffer consulta = new StringBuffer("SELECT * FROM integrante where nome ");
+        consulta.append(nome);
 
         PreparedStatement statement = null;
         try {

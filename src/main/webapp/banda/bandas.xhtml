@@ -7,7 +7,6 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="centro">
-            <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
             <h:form>
                 <h:dataTable value="#{controladorDeBanda.bandas()}" var="album" border="3">
                     <h:column>
@@ -20,9 +19,6 @@
                     </h:column>
                 </h:dataTable>
             </h:form>
-        </ui:define>
-        <ui:define name="rodape">
-            <p>Listagem de bandas </p>
         </ui:define>
     </ui:composition>
 </html>

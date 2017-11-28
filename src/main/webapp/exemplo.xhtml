@@ -1,29 +1,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <head jsf:id="head">
-        <title>Exemplo com HTML 5</title>
-        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
-        <!--<link jsf:name="estilos.css"  rel="stylesheet" type="text/css" />-->
-    </head>
-    <body jsf:id="body">
-        <nav>
-            <span class="estilo" > 
-                navegação....
-            </span>
-        </nav>
-        <div id="central">
-            <form jsf:id="form" jsf:prependId="false">
+    <ui:composition template="/template.xhtml">
 
-                <input type="text" class="campo" jsf:value="#{controladorDeAlbum.album.descricao}"  
-                       placeholder="Digite a descrição" >
-                </input>
-                <button jsf:action="#{controladorDeAlbum.salvar()}">Envia</button>
-            </form>
+        <ui:define name="centro">
+            <div class="col-md-8">
+                <div id="centro" class="col-sm-8 text-left"> 
+                    <div id="central">
+                        <form jsf:id="form" jsf:prependId="false">
 
-        </div>
-        <footer>
-            <div id="rodape">IFPB</div>
-        </footer>
-    </body>
+                            <input type="text" class="campo" jsf:value="#{controladorDeAlbum.album.descricao}"  
+                                   placeholder="Digite a descrição" >
+                            </input>
+                            <button class="btn btn-success" jsf:action="#{controladorDeAlbum.salvar()}">Enviar</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
 </html>

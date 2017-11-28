@@ -7,7 +7,6 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="centro">
-            <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
             <h:form>
                 <h:outputLabel for="descricao" value="Descrição: "/>
                 <h:inputText  id="descricao" value="#{controladorDeBanda.banda.nomeFantasia}" />
@@ -21,7 +20,7 @@
                                    itemLabel="#{integrante.nome}"
                                    itemValue="#{integrante}" />
                 </h:selectOneMenu>
-                <h:commandButton value="adicionar" action="#{controladorDeBanda.add()}" />
+                <h:commandButton value="adicionar" class="btn btn-success" action="#{controladorDeBanda.add()}" />
                 
                 <h:dataTable value="#{controladorDeBanda.integrantesDaBanda()}" var="integrante">
                     <h:column>
@@ -34,7 +33,7 @@
                     </h:column>
                 </h:dataTable>
                 
-                <h:commandButton value="salvar" action="#{controladorDeBanda.salvar()}" />
+                <h:commandButton value="salvar"  class="btn btn-success" action="#{controladorDeBanda.salvar()}" />
            
             </h:form>
         </ui:define>

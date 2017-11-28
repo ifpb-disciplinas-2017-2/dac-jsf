@@ -17,7 +17,9 @@ nome varchar(50)
 CREATE TABLE Album(
 id serial PRIMARY KEY,
 descricao varchar(50),
- dataDeLancamento DATE
+ dataDeLancamento DATE,
+banda_id int
+FOREIGN KEY (id_banda) REFERENCES banda(id) ON DELETE RESTRICT
 
 )
 

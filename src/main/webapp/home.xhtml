@@ -7,7 +7,8 @@
     <ui:composition template="/template.xhtml">
         <ui:define name="esquerda">
             <h:form>
-                <p><h:commandLink value="Cadastrar Banda" action="banda/banda.xhtml" /></p>
+                <a href="#{facesContext.externalContext.applicationContextPath}/faces/home.xhtml">Home</a>
+                <!--<p><h:commandLink value="Cadastrar Banda" action="#{request.contextPath}/faces/album/album.xhtml" /></p>-->
                 <p><h:commandLink value="Listar Bandas" action="banda/bandas.xhtml" /></p>
                 <p><h:commandLink value="Cadastrar Album" action="album/album.xhtml" /></p>
                 <p><h:commandLink value="Listar Albuns" action="album/albuns.xhtml" /></p>
@@ -16,7 +17,7 @@
             </h:form>
         </ui:define>
         <ui:define name="centro">
-            <h1> <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" /> </h1
+            <h1> <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" /> </h1>
         </ui:define>
     </ui:composition>
 </html>

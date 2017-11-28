@@ -5,9 +5,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="../template.xhtml">
         <ui:define name="centro">
-            <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
             <h:form>
                 <h:panelGrid class="estilo" columns="2">
                     <h:outputLabel for="descricao" value="Descrição: "/>
@@ -27,7 +26,7 @@
                                        itemValue="#{banda}" />
                     </h:selectOneMenu>
                 </h:panelGrid>
-                <h:commandButton value="salvar" action="#{controladorDeAlbum.salvar()}" />
+                <h:commandButton value="salvar" class="btn btn-success" action="#{controladorDeAlbum.salvar()}" />
             </h:form>
         </ui:define>
     </ui:composition>

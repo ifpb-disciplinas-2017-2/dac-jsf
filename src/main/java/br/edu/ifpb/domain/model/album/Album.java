@@ -11,10 +11,11 @@ import java.util.Objects;
  */
 public class Album {
 
+    private int id;
     private String descricao;
     private LocalDate dataDeLancamento;
-
-    private Banda banda = new Banda();
+    private int banda; 
+//    private Banda banda = new Banda();
 
     public Album() {
     }
@@ -35,20 +36,29 @@ public class Album {
         this.dataDeLancamento = dataDeLancamento;
     }
 
-    public Banda getBanda() {
+    public int getBanda() {
         return banda;
     }
 
-    public void setBanda(Banda banda) {
+    public void setBanda(int banda) {
         this.banda = banda;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.descricao);
-        hash = 53 * hash + Objects.hashCode(this.dataDeLancamento);
-        hash = 53 * hash + Objects.hashCode(this.banda);
+        hash = 13 * hash + this.id;
+        hash = 13 * hash + Objects.hashCode(this.descricao);
+        hash = 13 * hash + Objects.hashCode(this.dataDeLancamento);
+        hash = 13 * hash + Objects.hashCode(this.banda);
         return hash;
     }
 
@@ -64,6 +74,9 @@ public class Album {
             return false;
         }
         final Album other = (Album) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (!Objects.equals(this.descricao, other.descricao)) {
             return false;
         }
@@ -75,5 +88,4 @@ public class Album {
         }
         return true;
     }
-
 }

@@ -15,7 +15,7 @@ public interface Albuns {
 
     boolean salvar(Album album);
 
-    Album localizarPor(String descricao);
+    Album localizarPor(int id);
 
 //    public List<Banda> listarAsBandas();
 

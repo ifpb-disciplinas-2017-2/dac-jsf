@@ -8,9 +8,11 @@ import java.util.Objects;
  * @since 21/11/2017, 09:11:47
  */
 public class Integrante {
-
+    
+    private int id;
     private String nome;
     private CPF cpf = new CPF("");
+    private int banda;
 
     public Integrante() {
     }
@@ -33,6 +35,22 @@ public class Integrante {
 
     public void setCpf(CPF cpf) {
         this.cpf = cpf;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getBanda() {
+        return banda;
+    }
+
+    public void setBanda(int banda) {
+        this.banda = banda;
     }
 
     @Override

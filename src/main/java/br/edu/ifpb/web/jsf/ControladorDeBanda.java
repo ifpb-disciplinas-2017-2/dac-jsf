@@ -44,7 +44,7 @@ public class ControladorDeBanda implements Serializable {
     }
 
     public List<Integrante> integrantes() {
-        return this.service.todosOsIntegrantes();
+        return this.service.listarOsIntegrantes();
     }
     public List<Integrante> integrantesDaBanda() {
         return this.banda.getIntegrantes();

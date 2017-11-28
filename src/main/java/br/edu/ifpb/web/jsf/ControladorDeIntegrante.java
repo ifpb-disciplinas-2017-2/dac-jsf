@@ -25,9 +25,19 @@ public class ControladorDeIntegrante {
         return serviceIntegrante.listarIntegrantes();
     }
     
-    public String removerIntegrante(Integrante i){
-        this.serviceIntegrante.removerIntegrante(i);
+    public String excluirIntegrante(int id){
+        serviceIntegrante.removerIntegrante(id);
         return null;
+    }
+    
+     public Integrante buscarIntegrante(int id) {
+        return serviceIntegrante.buscarIntegrante(id);
+    }
+
+    
+    public boolean editarIntegrante(int id, Integrante i) {
+        serviceIntegrante.removerIntegrante(id);
+        return serviceIntegrante.salvarIntegrante(i);
     }
     
     public Integrante getIntegrante() {

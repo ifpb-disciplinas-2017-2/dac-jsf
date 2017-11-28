@@ -1,6 +1,10 @@
 package br.edu.ifpb.domain.model.album;
 
-import br.edu.ifpb.infra.AlbunsEmMemoria;
+import br.edu.ifpb.domain.model.banda.Banda;
+import br.edu.ifpb.domain.model.banda.Bandas;
+import br.edu.ifpb.infra.persistence.memory.AlbunsEmMemoria;
+import br.edu.ifpb.infra.persistence.memory.BandasEmMemoria;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -11,6 +15,7 @@ import java.util.List;
 public class ServiceAlbum {
     
     private final Albuns dao = new AlbunsEmMemoria();
+    private final Bandas bandas = new BandasEmMemoria();
     
     public boolean salvar(Album album){
         //validar os dados
@@ -19,11 +24,10 @@ public class ServiceAlbum {
         }
        // fluxo para persistência     
         return dao.salvar(album);
-    }
-
+    } 
     private static boolean naoEhAlbumValido(Album album) {
         return album.getDataDeLancamento()==null || 
-                "".equalsIgnoreCase(album.getDataDeLancamento().trim());
+               LocalDate.now().isBefore(album.getDataDeLancamento());
     }
     
     public List<Album> todosOsAlbuns(){
@@ -32,5 +36,9 @@ public class ServiceAlbum {
 
     public void excluirAlbum(Album albumParaExcluir) {
         dao.excluir(albumParaExcluir);
+    }
+
+    public List<Banda> todosAsBandas() {
+        return this.bandas.listarTodos();
     }
 }

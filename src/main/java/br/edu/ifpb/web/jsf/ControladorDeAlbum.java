@@ -1,11 +1,10 @@
-package br.edu.ifpb.web;
+package br.edu.ifpb.web.jsf;
 
 import br.edu.ifpb.domain.model.album.ServiceAlbum;
 import br.edu.ifpb.domain.model.album.Album;
+import br.edu.ifpb.domain.model.banda.Banda;
 import java.util.List;
-import javax.enterprise.context.RequestScoped; //CDI
-//import javax.faces.bean.ManagedBean;
-//import javax.faces.bean.RequestScoped; //JSF
+import javax.enterprise.context.RequestScoped; 
 import javax.inject.Named;
 
 /**
@@ -15,21 +14,19 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-//@ManagedBean
-//@RequestScoped
 public class ControladorDeAlbum {
 
     private Album album = new Album();
-
     private ServiceAlbum service = new ServiceAlbum();
 
     public String salvar() {
         if (this.service.salvar(album)) {
-            return "listar.xhtml";
+            return "albuns.xhtml";
         }
         return null;
     }
-    public String excluir(Album albumParaExcluir){
+
+    public String excluir(Album albumParaExcluir) {
         this.service.excluirAlbum(albumParaExcluir);
         return null;
     }
@@ -41,9 +38,14 @@ public class ControladorDeAlbum {
     public void setAlbum(Album album) {
         this.album = album;
     }
-
+    
     public List<Album> albuns() {
         return this.service.todosOsAlbuns();
+
+    }
+
+    public List<Banda> bandas() {
+        return this.service.todosAsBandas();
 
     }
 }

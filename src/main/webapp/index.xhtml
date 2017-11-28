@@ -7,8 +7,19 @@
     </h:head>
     <h:body>
         <h:form>
-            Login: <h:inputText value="#{controladorDeLogin.usuario}" />
-            Senha: <h:inputText value="#{controladorDeLogin.senha}" />
+            <h:messages layout="table" class="erro" />
+            <h:outputLabel value="Login: " for="login" />
+            <h:inputText id="login"
+                         value="#{controladorDeLogin.usuario}" 
+                         required="true"
+                         requiredMessage="Login obrigatorio"/>
+            <!--            <h:message for="login" />-->
+            <h:outputLabel value="Senha: " for="senha" />
+            <h:inputText id="senha"
+                         value="#{controladorDeLogin.senha}"  
+                         required="true"
+                         requiredMessage="senha obrigatorio"
+                         validator="validator.Senha"/>
             <h:commandButton value="login" action="#{controladorDeLogin.logar()}" />
         </h:form>
     </h:body>

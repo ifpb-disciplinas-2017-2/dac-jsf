@@ -1,4 +1,4 @@
-package br.edu.ifpb.infra;
+package br.edu.ifpb.infra.persistence.memory;
 
 import br.edu.ifpb.domain.model.album.Album;
 import br.edu.ifpb.domain.model.album.Albuns;
@@ -13,7 +13,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class AlbunsEmMemoria implements Albuns {
 
-    private static final List<Album> albuns = new CopyOnWriteArrayList<>();
+    private static final List<Album> albuns = new CopyOnWriteArrayList<>(); 
 
     @Override
     public boolean salvar(Album album) {
@@ -27,6 +27,14 @@ public class AlbunsEmMemoria implements Albuns {
 
     @Override
     public void excluir(Album albumParaExcluir) {
-        this.albuns.remove(albumParaExcluir);
+        albuns.remove(albumParaExcluir);
+    }
+
+    @Override
+    public Album localizarPor(String descricao) {
+        return albuns.stream()
+                .filter(a -> a.getDescricao().equalsIgnoreCase(descricao))
+                .findFirst()
+                .get();
     }
 }

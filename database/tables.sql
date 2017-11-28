@@ -7,7 +7,7 @@ id serial PRIMARY KEY,
 nome varchar(50),
 CPF VARCHAR(15),
 id_banda int,
-FOREIGN KEY (id_banda) REFERENCES danda(id) ON DELETE RESTRICT
+FOREIGN KEY (id_banda) REFERENCES banda(id) ON DELETE RESTRICT
 
 );
 CREATE TABLE Musica(

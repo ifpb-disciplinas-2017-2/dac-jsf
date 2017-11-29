@@ -17,7 +17,7 @@ public interface Bandas {
 
     Banda localizarPor(String descricao);
 
-    public List<Integrante> listarOsIntegrantes();
+    public List<Integrante> listarOsIntegrantes(int id_banda);
 
     public Integrante localizarIntegrantePor(String nome);
 

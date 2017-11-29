@@ -2,8 +2,8 @@ package br.edu.ifpb.domain.model.album;
 
 import br.edu.ifpb.domain.model.banda.Banda;
 import br.edu.ifpb.domain.model.banda.Bandas;
-import br.edu.ifpb.infra.persistence.memory.AlbunsEmMemoria;
-import br.edu.ifpb.infra.persistence.memory.BandasEmMemoria;
+import br.edu.ifpb.infra.persistence.jdbc.AlbunsEmJDBC;
+import br.edu.ifpb.infra.persistence.jdbc.BandasEmJDBC;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,8 +14,10 @@ import java.util.List;
  */
 public class ServiceAlbum {
     
-    private final Albuns dao = new AlbunsEmMemoria();
-    private final Bandas bandas = new BandasEmMemoria();
+//    private final Albuns dao = new AlbunsEmMemoria();
+//    private final Bandas bandas = new BandasEmMemoria();
+     private  Albuns dao = new AlbunsEmJDBC();
+    private  Bandas bandas = new BandasEmJDBC();
     
     public boolean salvar(Album album){
         //validar os dados

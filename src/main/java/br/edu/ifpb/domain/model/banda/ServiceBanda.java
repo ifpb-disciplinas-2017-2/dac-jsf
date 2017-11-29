@@ -1,5 +1,6 @@
 package br.edu.ifpb.domain.model.banda;
 
+import br.edu.ifpb.infra.persistence.jdbc.BandasEmJDBC;
 import br.edu.ifpb.infra.persistence.memory.BandasEmMemoria;
 import java.util.List;
 
@@ -10,7 +11,8 @@ import java.util.List;
  */
 public class ServiceBanda {
     
-    private final Bandas dao = new BandasEmMemoria();
+  // ; private final Bandas dao = new BandasEmMemoria();
+    private  Bandas dao = new BandasEmJDBC();
     
     public boolean salvar(Banda album){
         return dao.salvar(album);
@@ -24,7 +26,7 @@ public class ServiceBanda {
         dao.excluir(albumParaExcluir);
     }
 
-    public List<Integrante> todosOsIntegrantes() {
-        return this.dao.listarOsIntegrantes();
+    public List<Integrante> todosOsIntegrantes(int id) {
+        return this.dao.listarOsIntegrantes(id);
     }
 }

@@ -52,7 +52,7 @@ public class BandasEmMemoria implements Bandas {
     }
 
     @Override
-    public List<Integrante> listarOsIntegrantes() {
+    public List<Integrante> listarOsIntegrantes(int id) {
         return integrantes;
     }
 }

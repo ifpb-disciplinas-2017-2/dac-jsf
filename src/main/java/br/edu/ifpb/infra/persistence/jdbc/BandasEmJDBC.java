@@ -122,8 +122,34 @@ public class BandasEmJDBC implements Bandas {
     }
 
     @Override
-    public List<Integrante> listarOsIntegrantes() {
-        return IntegranteEmJDBC1.listarTodos();
+    public List<Integrante> listarOsIntegrantes(int id_banda) {
+        try {
+            StringBuffer consulta = new StringBuffer();
+            consulta.append("SELECT IT.ID ID_INTEG ,IT.NOME NOME_INTEG, IT.CPF CPF_INTEG ");
+            consulta.append("FROM BANDA B, INTEGRANTE IT, INTEGRANTE_BANDA IB ");
+            consulta.append("WHERE ").
+                    append(id_banda).append("=IB.ID_BANDA AND IT.ID = IB.ID_INTEGRANTE");
+
+            PreparedStatement statement = conexao.prepareStatement(consulta.toString());
+            ResultSet rs = statement.executeQuery();
+            
+            
+            List<Integrante> integrantes = new ArrayList<>();
+            while(rs.next()){
+            String cpf = rs.getString("cpf_integ");
+            Integrante integ = new Integrante(rs.getInt("id_integ"),
+                    rs.getString("nome_integ"),
+                    new CPF(cpf));
+            
+            integrantes.add(integ);
+            }
+            if(!integrantes.isEmpty())
+               
+            return integrantes;
+                    } catch (SQLException ex) {
+            Logger.getLogger(BandasEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return Collections.EMPTY_LIST;
     }
 
     @Override

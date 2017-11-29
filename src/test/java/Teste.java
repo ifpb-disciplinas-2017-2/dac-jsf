@@ -48,11 +48,11 @@ public class Teste {
         integrantes.add(new Integrante(3, "jose", new CPF("12121212121")));
         integrantes.add(new Integrante(1, "maria", new CPF("12345678911")));
         banda.setIntegrantes(integrantes);
-                
+
         BandasEmJDBC dao = new BandasEmJDBC();
-        
-       // boolean e = dao.salvar(banda);
-        System.err.println("erttttt "+dao.listarTodos());
+
+        // boolean e = dao.salvar(banda);
+        System.err.println("erttttt " + dao.listarOsIntegrantes(1));
 
     }
 }

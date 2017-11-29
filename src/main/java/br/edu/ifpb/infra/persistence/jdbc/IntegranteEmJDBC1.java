@@ -5,6 +5,7 @@ import br.edu.ifpb.domain.model.album.Albuns;
 import br.edu.ifpb.domain.model.banda.CPF;
 import br.edu.ifpb.domain.model.banda.Integrante;
 import br.edu.ifpb.infra.persistence.jdbc.Conexao;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,66 +23,94 @@ import java.util.logging.Logger;
  */
 public class IntegranteEmJDBC1 implements IFIntegrante {
 
-    private Conexao conexao;
+    private Connection conexao;
 
     public IntegranteEmJDBC1() {
-        conexao = new Conexao();
+        conexao = new Conexao().init();
     }
 
     //   private static final List<Album> albuns = new CopyOnWriteArrayList<>();
     @Override
     public boolean salvar(Integrante integrante) {
-        boolean re = false;
+        boolean resultado = false;
         String sql = "INSERT INTO integrante (nome,cpf) VALUES(?,?)";
         PreparedStatement statement = null;
         try {
-            statement = conexao.init().prepareStatement(sql);
+            statement = conexao.prepareStatement(sql);
 
             statement.setString(1, integrante.getNome());
             statement.setString(2, integrante.getCpf().formatted());
 
-            re = statement.execute();
+            if(statement.executeUpdate()>0);
+            resultado= true;
         } catch (SQLException ex) {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return re;
+        
+         
+        finally{
+            try {
+                Conexao.fecharConexao(conexao);
+            } catch (SQLException ex) {
+                Logger.getLogger(BandasEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return resultado;
     }
 
     @Override
     public List<Integrante> listarTodos() {
+         List<Integrante> integrantes = null;
         try {
+           
             String consulta = "SELECT * FROM integrante";
 
-            PreparedStatement statement = conexao.init().prepareStatement(consulta);
-            return criarIntegrante(statement);
+            PreparedStatement statement = conexao.prepareStatement(consulta);
+             integrantes =new ArrayList<>(criarIntegrante(statement));
 
         } catch (SQLException ex) {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return Collections.emptyList();
+       
+         finally{
+            try {
+                Conexao.fecharConexao(conexao);
+            } catch (SQLException ex) {
+                Logger.getLogger(IntegranteEmJDBC1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+         return !integrantes.isEmpty() ? integrantes : Collections.EMPTY_LIST;
 
     }
 
     @Override
     public void excluir(Integrante integrantearaExcluir) {
         try {
-            String sql = "DELETE FROM Album WHERE id=?";
-            PreparedStatement statement = conexao.init().prepareStatement(sql);
+            String sql = "DELETE FROM integrante WHERE id=?";
+            PreparedStatement statement = conexao.prepareStatement(sql);
             statement.setInt(1, integrantearaExcluir.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
+         finally{
+            try {
+                Conexao.fecharConexao(conexao);
+            } catch (SQLException ex) {
+                Logger.getLogger(IntegranteEmJDBC1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
     public Integrante localizarPor(String nome) {
-        StringBuffer consulta = new StringBuffer("SELECT * FROM integrante where nome ");
+        StringBuffer consulta = new StringBuffer("SELECT * FROM integrante where nome=");
         consulta.append(nome);
+        consulta.append("");
 
         PreparedStatement statement = null;
         try {
-            statement = conexao.init().prepareStatement(consulta.toString());
+            statement = conexao.prepareStatement(consulta.toString());
         } catch (SQLException ex) {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -90,7 +119,14 @@ public class IntegranteEmJDBC1 implements IFIntegrante {
         } catch (SQLException ex) {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        finally{
+            try {
+                Conexao.fecharConexao(conexao);
+            } catch (SQLException ex) {
+                Logger.getLogger(IntegranteEmJDBC1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return new Integrante();
 
     }
 
@@ -101,7 +137,7 @@ public class IntegranteEmJDBC1 implements IFIntegrante {
             Integrante integrante = new Integrante(
                     resultSet.getInt("id"),
                     resultSet.getString("nome"),
-                    new CPF(resultSet.getString("dataDeLancamento")));
+                    new CPF(resultSet.getString("CPF")));
             integers.add(integrante);
 
         }

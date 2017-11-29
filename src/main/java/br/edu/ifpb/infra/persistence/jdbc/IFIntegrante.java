@@ -18,7 +18,7 @@ public interface IFIntegrante {
 
     List<Integrante> listarTodos();
 
-    Integrante localizarPor(String descricao);
+    Integrante localizarPor(String nome);
 
     //   private static final List<Album> albuns = new CopyOnWriteArrayList<>();
     boolean salvar(Integrante integrante);

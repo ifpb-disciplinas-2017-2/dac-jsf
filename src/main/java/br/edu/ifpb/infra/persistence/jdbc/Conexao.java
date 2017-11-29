@@ -22,13 +22,16 @@ public class Conexao {
     public Connection init() {
         try {
             Class.forName("org.postgresql.Driver");
-            return connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dac-jsf", "postgres", "12345");
+            return connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/DAC-JSF", "postgres", "12345");
         } catch (SQLException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    public  static void fecharConexao(Connection c) throws SQLException{
+        c.close();
     }
 
 }

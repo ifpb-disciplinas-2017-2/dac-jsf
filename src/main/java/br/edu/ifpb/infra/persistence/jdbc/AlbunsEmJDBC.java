@@ -29,7 +29,7 @@ public class AlbunsEmJDBC implements Albuns {
     //   private static final List<Album> albuns = new CopyOnWriteArrayList<>();
     @Override
     public boolean salvar(Album album) {
-        boolean re = false;
+        boolean resultado = false;
         String sql = "INSERT INTO Album (descricao,dataDeLancamento,id_banda) VALUES(?,?,?)";
         PreparedStatement statement = null;
         try {
@@ -38,11 +38,13 @@ public class AlbunsEmJDBC implements Albuns {
             statement.setString(1, album.getDescricao());
             statement.setDate(2, Date.valueOf(album.getDataDeLancamento()));
             statement.setInt(3, album.getBanda().getId());
-            re = statement.execute();
+            if(statement.executeUpdate()>0)
+                resultado = true;
+            
         } catch (SQLException ex) {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return re;
+        return resultado;
     }
 
     @Override
@@ -74,8 +76,10 @@ public class AlbunsEmJDBC implements Albuns {
 
     @Override
     public Album localizarPor(String descricao) {
-         StringBuffer consulta = new StringBuffer("SELECT * FROM Album where id ");
+         StringBuffer consulta = new StringBuffer("SELECT * FROM Album where descricao=");
          consulta.append(descricao);
+         consulta.append("");
+         System.err.println(consulta.toString());
 
             PreparedStatement statement = null;
         try {

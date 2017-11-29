@@ -14,6 +14,12 @@ private int id;
     private String nomeFantasia;
     private List<Integrante> integrantes = new ArrayList<>();
 
+    public Banda(int id, String nomeFantasia) {
+        this.id = id;
+        this.nomeFantasia = nomeFantasia;
+    }
+    
+
     public Banda() {
     }
     public void novoIntegrante(Integrante integrante){

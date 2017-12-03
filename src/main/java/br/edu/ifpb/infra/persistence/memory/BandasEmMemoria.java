@@ -55,4 +55,9 @@ public class BandasEmMemoria implements Bandas {
     public List<Integrante> listarOsIntegrantes(int id) {
         return integrantes;
     }
+
+    @Override
+    public Banda localizarPor(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

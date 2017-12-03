@@ -5,10 +5,8 @@ CREATE TABLE Banda(
 CREATE TABLE INTEGRANTE(
 	id serial PRIMARY KEY,
 	nome VARCHAR(50),
-	CPF VARCHAR(15),
-	id_banda int,
-	FOREIGN KEY (id_banda) REFERENCES banda(id) ON DELETE RESTRICT
-
+	CPF VARCHAR(15)
+	
 );
 CREATE TABLE Musica(
 	id serial PRIMARY KEY,

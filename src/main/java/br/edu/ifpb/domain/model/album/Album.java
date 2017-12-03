@@ -93,4 +93,9 @@ public class Album {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Album{" + "descricao=" + descricao + ", dataDeLancamento=" + dataDeLancamento + ", id=" + id + ", banda=" + banda + '}';
+    }
+
 }

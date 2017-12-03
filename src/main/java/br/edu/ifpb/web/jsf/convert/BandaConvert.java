@@ -3,6 +3,8 @@ package br.edu.ifpb.web.jsf.convert;
 import br.edu.ifpb.domain.model.album.Album;
 import br.edu.ifpb.domain.model.banda.Banda;
 import br.edu.ifpb.domain.model.banda.Bandas;
+import br.edu.ifpb.domain.model.banda.ServiceBanda;
+import br.edu.ifpb.infra.persistence.jdbc.BandasEmJDBC;
 import br.edu.ifpb.infra.persistence.memory.BandasEmMemoria;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -17,7 +19,8 @@ import javax.faces.convert.FacesConverter;
 @FacesConverter(value = "convert.Banda", forClass = Banda.class)
 public class BandaConvert implements Converter {
 
-    private final Bandas albuns = new BandasEmMemoria();
+//    private final Bandas albuns = new BandasEmMemoria();
+    private final ServiceBanda bandas = new ServiceBanda();
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component,
@@ -25,7 +28,7 @@ public class BandaConvert implements Converter {
         if (value == null) {
             return null;
         }
-        return albuns.localizarPor(value);
+        return bandas.localizarPor(value);
     }
 
     @Override

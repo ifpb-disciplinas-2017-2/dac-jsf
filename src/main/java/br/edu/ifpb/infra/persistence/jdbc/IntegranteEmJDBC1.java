@@ -104,21 +104,19 @@ public class IntegranteEmJDBC1 implements IFIntegrante {
 
     @Override
     public Integrante localizarPor(String nome) {
-        StringBuffer consulta = new StringBuffer("SELECT * FROM integrante where nome=");
-        consulta.append(nome);
-        consulta.append("");
+        StringBuffer consulta = new StringBuffer("SELECT * FROM integrante where nome=?");
+        Integrante Integrante = new Integrante();
+
 
         PreparedStatement statement = null;
         try {
             statement = conexao.prepareStatement(consulta.toString());
+            statement.setString(1, nome);
+            Integrante= criarIntegrante(statement).get(0);
         } catch (SQLException ex) {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            return criarIntegrante(statement).get(0);
-        } catch (SQLException ex) {
-            Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         finally{
             try {
                 Conexao.fecharConexao(conexao);
@@ -126,8 +124,7 @@ public class IntegranteEmJDBC1 implements IFIntegrante {
                 Logger.getLogger(IntegranteEmJDBC1.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return new Integrante();
-
+       return Integrante;
     }
 
     private List<Integrante> criarIntegrante(PreparedStatement statement) throws SQLException {
@@ -138,10 +135,12 @@ public class IntegranteEmJDBC1 implements IFIntegrante {
                     resultSet.getInt("id"),
                     resultSet.getString("nome"),
                     new CPF(resultSet.getString("CPF")));
+            System.err.println("eee "+integrante.getNome());
             integers.add(integrante);
 
         }
-
+if(!integers.isEmpty())
         return integers;
+return Collections.EMPTY_LIST;
     }
 }

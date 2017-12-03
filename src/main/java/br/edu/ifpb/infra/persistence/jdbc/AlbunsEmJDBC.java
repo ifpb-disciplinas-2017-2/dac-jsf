@@ -2,11 +2,13 @@ package br.edu.ifpb.infra.persistence.jdbc;
 
 import br.edu.ifpb.domain.model.album.Album;
 import br.edu.ifpb.domain.model.album.Albuns;
+import br.edu.ifpb.domain.model.banda.Banda;
+import br.edu.ifpb.domain.model.banda.Bandas;
+import br.edu.ifpb.domain.model.banda.Integrante;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.logging.Logger;
 public class AlbunsEmJDBC implements Albuns {
 
     private Conexao conexao;
+    private Bandas bandas;
 
     public AlbunsEmJDBC() {
         conexao = new Conexao();
@@ -76,14 +79,16 @@ public class AlbunsEmJDBC implements Albuns {
 
     @Override
     public Album localizarPor(String descricao) {
-         StringBuffer consulta = new StringBuffer("SELECT * FROM Album where descricao=");
-         consulta.append(descricao);
-         consulta.append("");
+         StringBuffer consulta = new StringBuffer("SELECT * FROM Album WHERE descricao=?");
+         
+         
+         
          System.err.println(consulta.toString());
 
             PreparedStatement statement = null;
         try {
             statement = conexao.init().prepareStatement(consulta.toString());
+            statement.setString(1, descricao);
         } catch (SQLException ex) {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -103,8 +108,12 @@ public class AlbunsEmJDBC implements Albuns {
             Album album = new Album(
                     resultSet.getInt("id"),
                     resultSet.getString("descricao"),
-                    resultSet.getDate("dataDeLancamento").toLocalDate()
+                    resultSet.getDate("DATADELANCAMENTO").toLocalDate()
             );
+            this.bandas = new BandasEmJDBC();
+            System.err.println("id banda "+resultSet.getInt("id_banda"));
+            Banda banda = bandas.localizarPor(resultSet.getInt("id_banda"));
+            album.setBanda(banda);
             albuns.add(album);
         }
 

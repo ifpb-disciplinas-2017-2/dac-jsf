@@ -43,4 +43,8 @@ public class ServiceAlbum {
     public List<Banda> todosAsBandas() {
         return this.bandas.listarTodos();
     }
+
+    public Album localizarPor(String descricao) {
+        return dao.localizarPor(descricao);
+    }
 }

@@ -10,15 +10,15 @@ import java.util.List;
  * @since 20/11/2017, 10:21:06
  */
 public class ServiceBanda {
-    
-  // ; private final Bandas dao = new BandasEmMemoria();
-    private  Bandas dao = new BandasEmJDBC();
-    
-    public boolean salvar(Banda album){
+
+    // ; private final Bandas dao = new BandasEmMemoria();
+    private Bandas dao = new BandasEmJDBC();
+
+    public boolean salvar(Banda album) {
         return dao.salvar(album);
     }
- 
-    public List<Banda> todosOsAlbuns(){
+
+    public List<Banda> todosOsAlbuns() {
         return dao.listarTodos();
     }
 
@@ -28,5 +28,17 @@ public class ServiceBanda {
 
     public List<Integrante> todosOsIntegrantes(int id) {
         return this.dao.listarOsIntegrantes(id);
+    }
+
+    public Banda localizarPor(String nome) {
+        return dao.localizarPor(nome);
+    }
+
+    public Integrante localizarIntegrantePor(String nome) {
+        return dao.localizarIntegrantePor(nome);
+    }
+
+    public Banda localizarPor(int id) {
+     return dao.localizarPor(id);
     }
 }

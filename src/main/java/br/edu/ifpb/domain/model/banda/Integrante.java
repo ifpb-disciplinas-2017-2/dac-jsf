@@ -84,6 +84,11 @@ public class Integrante {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Integrante{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + '}';
+    }
+
     
 
 }

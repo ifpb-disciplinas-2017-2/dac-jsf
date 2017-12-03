@@ -16,6 +16,7 @@ public interface Bandas {
     boolean salvar(Banda album);
 
     Banda localizarPor(String descricao);
+     Banda localizarPor(int id);
 
     public List<Integrante> listarOsIntegrantes(int id_banda);
 

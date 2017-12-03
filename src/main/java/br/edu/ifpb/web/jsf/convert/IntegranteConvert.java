@@ -2,6 +2,8 @@ package br.edu.ifpb.web.jsf.convert;
 
 import br.edu.ifpb.domain.model.banda.Bandas;
 import br.edu.ifpb.domain.model.banda.Integrante;
+import br.edu.ifpb.domain.model.banda.ServiceBanda;
+import br.edu.ifpb.infra.persistence.jdbc.BandasEmJDBC;
 import br.edu.ifpb.infra.persistence.memory.BandasEmMemoria;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -16,14 +18,15 @@ import javax.faces.convert.FacesConverter;
 @FacesConverter(value = "convert.Integrante", forClass = Integrante.class)
 public class IntegranteConvert implements Converter {
 
-    private final Bandas albuns = new BandasEmMemoria();
+  //  private final Bandas albuns = new BandasEmMemoria();
+     private final ServiceBanda serviceBanda = new ServiceBanda();
     @Override
     public Object getAsObject(FacesContext context, UIComponent component,
             String value) {
         if (value == null) {
             return null;
         }
-        return albuns.localizarIntegrantePor(value); 
+        return serviceBanda.localizarIntegrantePor(value); 
     }
 
     @Override

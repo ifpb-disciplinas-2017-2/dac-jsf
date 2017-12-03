@@ -29,7 +29,40 @@ public class BandasEmJDBC implements Bandas {
 
     public BandasEmJDBC() {
         this.conexao = new Conexao().init();
-        new IntegranteEmJDBC1();
+        this.IntegranteEmJDBC1 = new IntegranteEmJDBC1();
+    }
+
+    @Override
+    public Banda localizarPor(int id) {
+         StringBuffer consulta = new StringBuffer();
+        consulta.append("SELECT B.ID, B.NOMEFANTASIA NOMEBANDA ,IT.ID ID_INTEG ,IT.NOME NOME_INTEG, IT.CPF CPF_INTEG ");
+        consulta.append("FROM BANDA B, INTEGRANTE IT, INTEGRANTE_BANDA IB ");
+        consulta.append("WHERE B.ID = IB.ID_BANDA AND IT.ID = IB.ID_INTEGRANTE AND ");
+        consulta.append(" B.ID=?");
+        try {
+
+            PreparedStatement Statement = conexao.prepareStatement(consulta.toString());
+            Statement.setInt(1, id);
+
+            ResultSet rs = Statement.executeQuery();
+
+//            while (rs.next()) {
+//                banda.setId(rs.getInt("ID"));
+//                banda.setNomeFantasia(rs.getString("nomeFantasia"));
+//                break;
+//            }
+            return criarBanda(rs).get(0);
+        } catch (SQLException ex) {
+            Logger.getLogger(BandasEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                Conexao.fecharConexao(conexao);
+            } catch (SQLException ex) {
+                Logger.getLogger(BandasEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return new Banda();
+
     }
 
     @Override
@@ -53,6 +86,7 @@ public class BandasEmJDBC implements Bandas {
 
     @Override
     public List<Banda> listarTodos() {
+        List<Banda> retorno = null;
         try {
             StringBuffer consulta = new StringBuffer();
             consulta.append("SELECT B.ID, B.NOMEFANTASIA NOMEBANDA ,IT.ID ID_INTEG ,IT.NOME NOME_INTEG, IT.CPF CPF_INTEG ");
@@ -60,14 +94,20 @@ public class BandasEmJDBC implements Bandas {
             consulta.append("WHERE B.ID = IB.ID_BANDA AND IT.ID = IB.ID_INTEGRANTE");
 
             PreparedStatement statement = conexao.prepareStatement(consulta.toString());
-           ResultSet resultSet = statement.executeQuery();
-            return criarBanda(resultSet);
+            ResultSet resultSet = statement.executeQuery();
+            retorno = criarBanda(resultSet);
 
         } catch (SQLException ex) {
             Logger.getLogger(AlbunsEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                Conexao.fecharConexao(conexao);
+            } catch (SQLException ex) {
+                Logger.getLogger(BandasEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        return Collections.emptyList();
 
+        return retorno;
     }
 
     @Override
@@ -99,16 +139,27 @@ public class BandasEmJDBC implements Bandas {
     }
 
     @Override
-    public Banda localizarPor(String descricao) {
+    public Banda localizarPor(String nome) {
         Banda banda = new Banda();
+        StringBuffer consulta = new StringBuffer();
+        consulta.append("SELECT B.ID, B.NOMEFANTASIA NOMEBANDA ,IT.ID ID_INTEG ,IT.NOME NOME_INTEG, IT.CPF CPF_INTEG ");
+        consulta.append("FROM BANDA B, INTEGRANTE IT, INTEGRANTE_BANDA IB ");
+        consulta.append("WHERE B.ID = IB.ID_BANDA AND IT.ID = IB.ID_INTEGRANTE AND ");
+        consulta.append(" B.NOMEFANTASIA=?");
+
         try {
             List<Banda> bandas = new ArrayList<>();
-            ResultSet rs = conexao.createStatement().executeQuery("SELECT * FROM BANDA");
-            while (rs.next()) {
-                banda.setId(rs.getInt("ID"));
-                banda.setNomeFantasia(rs.getString("nomeFantasia"));
-                break;
-            }
+            PreparedStatement Statement = conexao.prepareStatement(consulta.toString());
+            Statement.setString(1, nome);
+
+            ResultSet rs = Statement.executeQuery();
+
+//            while (rs.next()) {
+//                banda.setId(rs.getInt("ID"));
+//                banda.setNomeFantasia(rs.getString("nomeFantasia"));
+//                break;
+//            }
+            banda = criarBanda(rs).get(0);
         } catch (SQLException ex) {
             Logger.getLogger(BandasEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -132,24 +183,23 @@ public class BandasEmJDBC implements Bandas {
 
             PreparedStatement statement = conexao.prepareStatement(consulta.toString());
             ResultSet rs = statement.executeQuery();
-            
-            
+
             List<Integrante> integrantes = new ArrayList<>();
-            while(rs.next()){
-            String cpf = rs.getString("cpf_integ");
-            Integrante integ = new Integrante(rs.getInt("id_integ"),
-                    rs.getString("nome_integ"),
-                    new CPF(cpf));
-            
-            integrantes.add(integ);
+            while (rs.next()) {
+                String cpf = rs.getString("cpf_integ");
+                Integrante integ = new Integrante(rs.getInt("id_integ"),
+                        rs.getString("nome_integ"),
+                        new CPF(cpf));
+
+                integrantes.add(integ);
             }
-            if(!integrantes.isEmpty())
-               
-            return integrantes;
-                    } catch (SQLException ex) {
+            if (!integrantes.isEmpty()) {
+                return integrantes;
+            }
+        } catch (SQLException ex) {
             Logger.getLogger(BandasEmJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
-         return Collections.EMPTY_LIST;
+        return Collections.EMPTY_LIST;
     }
 
     @Override
@@ -177,9 +227,9 @@ public class BandasEmJDBC implements Bandas {
             List<Integrante> integrantes = new ArrayList<>();
             String cpf = rs.getString("cpf_integ");
             Integrante integ = new Integrante(rs.getInt("id_integ"),
-                     rs.getString("nome_integ"),
+                    rs.getString("nome_integ"),
                     new CPF(cpf));
-            
+
             integrantes.add(integ);
             banda.setIntegrantes(integrantes);
             bandas.add(banda);

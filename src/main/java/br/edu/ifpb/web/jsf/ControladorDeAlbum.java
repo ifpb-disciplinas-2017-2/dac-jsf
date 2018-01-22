@@ -2,12 +2,9 @@ package br.edu.ifpb.web.jsf;
 
 import br.edu.ifpb.domain.model.album.ServiceAlbum;
 import br.edu.ifpb.domain.model.album.Album;
-import br.edu.ifpb.domain.model.banda.Integrante;
-import java.util.Arrays;
+import br.edu.ifpb.domain.model.banda.Banda;
 import java.util.List;
-import javax.enterprise.context.RequestScoped; //CDI
-//import javax.faces.bean.ManagedBean;
-//import javax.faces.bean.RequestScoped; //JSF
+import javax.enterprise.context.RequestScoped; 
 import javax.inject.Named;
 
 /**
@@ -17,18 +14,14 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-//@ManagedBean
-//@RequestScoped
 public class ControladorDeAlbum {
 
     private Album album = new Album();
-//    private Integrante integrante = new Integrante();
-
     private ServiceAlbum service = new ServiceAlbum();
 
     public String salvar() {
         if (this.service.salvar(album)) {
-            return "listar.xhtml";
+            return "albuns.xhtml";
         }
         return null;
     }
@@ -45,23 +38,14 @@ public class ControladorDeAlbum {
     public void setAlbum(Album album) {
         this.album = album;
     }
-
-//    public Integrante getIntegrante() {
-//        return integrante;
-//    }
-//
-//    public void setIntegrante(Integrante integrante) {
-//        this.integrante = integrante;
-//    }
-
     
     public List<Album> albuns() {
         return this.service.todosOsAlbuns();
 
     }
 
-    public List<Integrante> integrantes() {
-        return this.service.todosOsIntegrantes();
+    public List<Banda> bandas() {
+        return this.service.todosAsBandas();
 
     }
 }

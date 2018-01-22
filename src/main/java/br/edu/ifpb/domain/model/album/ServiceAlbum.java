@@ -1,7 +1,9 @@
 package br.edu.ifpb.domain.model.album;
 
-import br.edu.ifpb.domain.model.banda.Integrante;
-import br.edu.ifpb.infra.persistence.memory.AlbunsEmMemoria;
+import br.edu.ifpb.domain.model.banda.Banda;
+import br.edu.ifpb.domain.model.banda.Bandas;
+import br.edu.ifpb.infra.persistence.jdbc.AlbunsEmJDBC;
+import br.edu.ifpb.infra.persistence.jdbc.BandasEmJDBC;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,7 +14,10 @@ import java.util.List;
  */
 public class ServiceAlbum {
     
-    private final Albuns dao = new AlbunsEmMemoria();
+//    private final Albuns dao = new AlbunsEmMemoria();
+//    private final Bandas bandas = new BandasEmMemoria();
+     private  Albuns dao = new AlbunsEmJDBC();
+    private  Bandas bandas = new BandasEmJDBC();
     
     public boolean salvar(Album album){
         //validar os dados
@@ -21,12 +26,7 @@ public class ServiceAlbum {
         }
        // fluxo para persistência     
         return dao.salvar(album);
-    }
-
-//    private static boolean naoEhAlbumValido(Album album) {
-//        return album.getDataDeLancamento()==null || 
-//                "".equalsIgnoreCase(album.getDataDeLancamento().trim());
-//    }
+    } 
     private static boolean naoEhAlbumValido(Album album) {
         return album.getDataDeLancamento()==null || 
                LocalDate.now().isBefore(album.getDataDeLancamento());
@@ -40,7 +40,11 @@ public class ServiceAlbum {
         dao.excluir(albumParaExcluir);
     }
 
-    public List<Integrante> todosOsIntegrantes() {
-        return this.dao.listarOsIntegrantes();
+    public List<Banda> todosAsBandas() {
+        return this.bandas.listarTodos();
+    }
+
+    public Album localizarPor(String descricao) {
+        return dao.localizarPor(descricao);
     }
 }

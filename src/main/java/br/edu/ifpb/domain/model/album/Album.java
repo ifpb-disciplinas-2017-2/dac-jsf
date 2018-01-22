@@ -1,6 +1,6 @@
 package br.edu.ifpb.domain.model.album;
 
-import br.edu.ifpb.domain.model.banda.Integrante;
+import br.edu.ifpb.domain.model.banda.Banda;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -12,17 +12,21 @@ import java.util.Objects;
 public class Album {
 
     private String descricao;
-//    private String dataDeLancamento;
     private LocalDate dataDeLancamento;
-    private Integrante integrante = new Integrante();
+    private int id;
+
+    private Banda banda = new Banda();
+
+    public Album(int id,String descricao, LocalDate dataDeLancamento) {
+        this.id = id;
+        this.descricao = descricao;
+        this.dataDeLancamento = dataDeLancamento;
+    }
+    
 
     public Album() {
     }
 
-//    public Album(String descricao, String dataDeLancamento) {
-//        this.descricao = descricao;
-//        this.dataDeLancamento = dataDeLancamento;
-//    }
     public String getDescricao() {
         return descricao;
     }
@@ -31,13 +35,6 @@ public class Album {
         this.descricao = descricao;
     }
 
-//    public String getDataDeLancamento() {
-//        return dataDeLancamento;
-//    }
-//
-//    public void setDataDeLancamento(String dataDeLancamento) {
-//        this.dataDeLancamento = dataDeLancamento;
-//    }
     public LocalDate getDataDeLancamento() {
         return dataDeLancamento;
     }
@@ -46,20 +43,29 @@ public class Album {
         this.dataDeLancamento = dataDeLancamento;
     }
 
-    public Integrante getIntegrante() {
-        return integrante;
+    public Banda getBanda() {
+        return banda;
     }
 
-    public void setIntegrante(Integrante integrante) {
-        this.integrante = integrante;
+    public void setBanda(Banda banda) {
+        this.banda = banda;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 53 * hash + Objects.hashCode(this.descricao);
         hash = 53 * hash + Objects.hashCode(this.dataDeLancamento);
-        hash = 53 * hash + Objects.hashCode(this.integrante);
+        hash = 53 * hash + Objects.hashCode(this.banda);
         return hash;
     }
 
@@ -81,13 +87,15 @@ public class Album {
         if (!Objects.equals(this.dataDeLancamento, other.dataDeLancamento)) {
             return false;
         }
-        if (!Objects.equals(this.integrante, other.integrante)) {
+        if (!Objects.equals(this.banda, other.banda)) {
             return false;
         }
         return true;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return "Album{" + "descricao=" + descricao + ", dataDeLancamento=" + dataDeLancamento + ", id=" + id + ", banda=" + banda + '}';
+    }
 
 }

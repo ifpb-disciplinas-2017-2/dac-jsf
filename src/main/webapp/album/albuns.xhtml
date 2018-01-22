@@ -7,7 +7,6 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="centro">
-            <h:outputText value="Bem vindo, #{controladorDeLogin.usuario}" />
             <h:form>
                 <h:dataTable value="#{controladorDeAlbum.albuns()}" var="album">
                     <h:column>
@@ -18,13 +17,9 @@
                         <f:facet name="header">Data de Lançamento</f:facet>
                         <h:outputText converter="convert.LocalDate" value="#{album.dataDeLancamento}" />
                     </h:column>
-                    <h:column >
-                        <f:facet name="header">Integrante</f:facet>
-                        <h:outputText converter="converter.CpfConverter" value="#{album.integrante.cpf}" />
-                    </h:column>
                     <h:column>
                         <f:facet name="header">Ação</f:facet>
-                        <h:commandButton value="excluir" action="#{controladorDeAlbum.excluir(album)}"/>
+                        <h:commandButton class="btn btn-danger" value="excluir" action="#{controladorDeAlbum.excluir(album)}"/>
                     </h:column>
                 </h:dataTable>
             </h:form>

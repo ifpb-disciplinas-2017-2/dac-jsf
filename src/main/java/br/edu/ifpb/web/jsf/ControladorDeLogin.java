@@ -21,7 +21,7 @@ public class ControladorDeLogin implements Serializable {
     public String logar() {
 
         if (usuarioValido()) {
-            return "cadastro.xhtml";
+            return "home.xhtml";
         } else {
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage("senha", new FacesMessage("usuario/senha não confere"));
